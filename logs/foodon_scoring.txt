@@ -1,0 +1,44 @@
+C:\Users\4dm1n123\anaconda3\envs\foodon_love\python.exe "C:\Program Files\JetBrains\PyCharm 2020.3\plugins\python\helpers\pydev\pydevd.py" --multiproc --qt-support=auto --client 127.0.0.1 --port 64430 --file C:/Users/4dm1n123/PycharmProjects/FoodOn_LOVE/main.py
+Connected to pydev debugger (build 203.7717.65)
+[nltk_data] Downloading package averaged_perceptron_tagger to
+[nltk_data]     C:\Users\4dm1n123\AppData\Roaming\nltk_data...
+[nltk_data]   Package averaged_perceptron_tagger is already up-to-
+[nltk_data]       date!
+[nltk_data] Downloading package wordnet to
+[nltk_data]     C:\Users\4dm1n123\AppData\Roaming\nltk_data...
+[nltk_data]   Package wordnet is already up-to-date!
+generating child parent pairs
+Using pre-generated pairs file.
+Found %d classes. 2764
+Found %d entities. 10865
+Generating dictionary of candidate classes.
+Using pre-generated candidate classes dictionary file: %s data/FoodOn/candidate_classes_dict.pkl
+Generating dictionary of skeleton candidate classes.
+Found %d candidate entities to populate out of %d all entities. 7745 10865
+alpha: %f 0.8
+num_mapping_per_iteration: %d 10000
+initial_siblings_scores: %s data/scores/siblings_scores.csv
+initial_parents_scores: %s data/scores/parents_scores.csv
+pairs_filepath: %s data/scores/pairs.pkl
+populated_filepath: %s data/scores/populated.pkl
+similarity_method: %s we_cos
+Number of candidate classes: %d 2433
+Number of candidate entities: %d 7745
+Phrase detection skipped
+Phrase detection skipped
+
+Calculating siblings score...
+Elapsed time for calculating siblings score: %.2f minutes 48.34270321528117
+Calculating parents score...
+
+Elapsed time for calculating parents score: %.2f minutes 30.64006119966507
+Updating scores. Iteration: %d/%d 0 0
+Top scores:
+%s        candidate class     candidate entity  score
+0          polysorbate       polysorbate 80    1.0
+1          polysorbate       polysorbate 60    1.0
+2          polysorbate       polysorbate 40    1.0
+3          polysorbate       polysorbate 20    1.0
+4  alkylcob(III)alamin  cyanocob(III)alamin    1.0
+
+Process finished with exit code 0

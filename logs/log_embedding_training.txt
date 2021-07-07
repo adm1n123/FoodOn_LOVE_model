@@ -1,0 +1,113 @@
+C:\Users\4dm1n123\anaconda3\envs\foodon_love\python.exe C:/Users/4dm1n123/PycharmProjects/FoodOn_LOVE/main.py
+[nltk_data] Downloading package averaged_perceptron_tagger to
+[nltk_data]     C:\Users\4dm1n123\AppData\Roaming\nltk_data...
+[nltk_data]   Package averaged_perceptron_tagger is already up-to-
+[nltk_data]       date!
+[nltk_data] Downloading package wordnet to
+[nltk_data]     C:\Users\4dm1n123\AppData\Roaming\nltk_data...
+[nltk_data]   Package wordnet is already up-to-date!
+Total sentences in wiki corpus: 4349
+Intersecting %d common vocabularies for transfer learning 85491
+Loss after epoch %d: %d 0 734923.4375
+Loss after epoch %d: %d 1 527742.8125
+Loss after epoch %d: %d 2 494382.625
+Loss after epoch %d: %d 3 496011.125
+Loss after epoch %d: %d 4 461730.5
+Loss after epoch %d: %d 5 436032.75
+Loss after epoch %d: %d 6 438771.5
+Loss after epoch %d: %d 7 416286.0
+Loss after epoch %d: %d 8 376847.25
+Loss after epoch %d: %d 9 396742.5
+Loss after epoch %d: %d 10 371533.0
+Loss after epoch %d: %d 11 361446.0
+Loss after epoch %d: %d 12 350507.0
+Loss after epoch %d: %d 13 329070.5
+Loss after epoch %d: %d 14 328950.0
+Loss after epoch %d: %d 15 375145.5
+Loss after epoch %d: %d 16 317706.5
+Loss after epoch %d: %d 17 334742.5
+Loss after epoch %d: %d 18 340133.5
+Loss after epoch %d: %d 19 335233.0
+Loss after epoch %d: %d 20 286328.0
+Loss after epoch %d: %d 21 292326.0
+Loss after epoch %d: %d 22 287687.0
+Loss after epoch %d: %d 23 261203.0
+Loss after epoch %d: %d 24 267655.0
+Loss after epoch %d: %d 25 280356.0
+Loss after epoch %d: %d 26 264537.0
+Loss after epoch %d: %d 27 255894.0
+Loss after epoch %d: %d 28 282533.0
+Loss after epoch %d: %d 29 283692.0
+Loss after epoch %d: %d 30 284991.0
+Loss after epoch %d: %d 31 287370.0
+Loss after epoch %d: %d 32 288761.0
+Loss after epoch %d: %d 33 278312.0
+Loss after epoch %d: %d 34 271386.0
+Loss after epoch %d: %d 35 267824.0
+Loss after epoch %d: %d 36 250314.0
+Loss after epoch %d: %d 37 263756.0
+Loss after epoch %d: %d 38 271424.0
+Loss after epoch %d: %d 39 277263.0
+Loss after epoch %d: %d 40 266416.0
+Loss after epoch %d: %d 41 271746.0
+Loss after epoch %d: %d 42 266366.0
+Loss after epoch %d: %d 43 253679.0
+Loss after epoch %d: %d 44 259426.0
+Loss after epoch %d: %d 45 274036.0
+Loss after epoch %d: %d 46 243375.0
+Loss after epoch %d: %d 47 271327.0
+Loss after epoch %d: %d 48 276954.0
+Loss after epoch %d: %d 49 252345.0
+Loss after epoch %d: %d 50 263032.0
+Loss after epoch %d: %d 51 224286.0
+Loss after epoch %d: %d 52 211018.0
+Loss after epoch %d: %d 53 198536.0
+Loss after epoch %d: %d 54 200542.0
+Loss after epoch %d: %d 55 214688.0
+Loss after epoch %d: %d 56 198496.0
+Loss after epoch %d: %d 57 181458.0
+Loss after epoch %d: %d 58 196818.0
+Loss after epoch %d: %d 59 184928.0
+Loss after epoch %d: %d 60 208458.0
+Loss after epoch %d: %d 61 192918.0
+Loss after epoch %d: %d 62 183264.0
+Loss after epoch %d: %d 63 193690.0
+Loss after epoch %d: %d 64 203964.0
+Loss after epoch %d: %d 65 182358.0
+Loss after epoch %d: %d 66 190144.0
+Loss after epoch %d: %d 67 201024.0
+Loss after epoch %d: %d 68 213366.0
+Loss after epoch %d: %d 69 195080.0
+Loss after epoch %d: %d 70 192748.0
+Loss after epoch %d: %d 71 213388.0
+Loss after epoch %d: %d 72 202358.0
+Loss after epoch %d: %d 73 192684.0
+Loss after epoch %d: %d 74 187042.0
+Loss after epoch %d: %d 75 193478.0
+Loss after epoch %d: %d 76 180388.0
+Loss after epoch %d: %d 77 193252.0
+Loss after epoch %d: %d 78 185444.0
+Loss after epoch %d: %d 79 191784.0
+Loss after epoch %d: %d 80 183550.0
+Loss after epoch %d: %d 81 189294.0
+Loss after epoch %d: %d 82 198776.0
+Loss after epoch %d: %d 83 206752.0
+Loss after epoch %d: %d 84 194064.0
+Loss after epoch %d: %d 85 200818.0
+Loss after epoch %d: %d 86 193274.0
+Loss after epoch %d: %d 87 199832.0
+Loss after epoch %d: %d 88 175748.0
+Loss after epoch %d: %d 89 196260.0
+Loss after epoch %d: %d 90 208708.0
+Loss after epoch %d: %d 91 190486.0
+Loss after epoch %d: %d 92 196094.0
+Loss after epoch %d: %d 93 195506.0
+Loss after epoch %d: %d 94 183312.0
+Loss after epoch %d: %d 95 183312.0
+Loss after epoch %d: %d 96 198402.0
+Loss after epoch %d: %d 97 192496.0
+Loss after epoch %d: %d 98 189588.0
+Loss after epoch %d: %d 99 189364.0
+
+Process finished with exit code 0
+
