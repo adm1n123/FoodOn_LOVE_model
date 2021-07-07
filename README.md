@@ -22,6 +22,7 @@ run main.py
 similarity of entity with all sibling is taken and also similarity with class label is taken 
 then score = alpha * sibling + (1-alpha) * class label
 
+Noun word is given 15% more weightage than non-noun words in class/instance label.
 
 TODO:
 wiki corpus has only 4349 sentences to train collect more (try firing failed queries again)
@@ -59,3 +60,6 @@ result fast due to vectorization.
 
 for sibling vectors store the sum of subling vector and when new sibling added just add vector 
 then take array of sibling vectors and array of entities do vector multiplication.
+
+
+Don't fix the seed number of seed instances take it as 5-10% percent etc.

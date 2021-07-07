@@ -6,37 +6,51 @@ import logging as log
 from word2vec import WordEmbeddings
 from wiki import Wikipedia
 from foodon import FoodOn
+from utils.utilities import load_pkl
+
 
 
 def main():
     config()
-    # 1. get corpus and train vectors.
 
-    we = WordEmbeddings()
-    # we.get_pretrain_vectors()
+    # train_embeddings()
 
-    foodon = FoodOn()
+    # create_and_run_model()
 
-    wiki = Wikipedia()
-    # wiki.parse_wiki()
-
-    # we.train_embeddings()
-
-    foodon.populate_foodon()
-
-
-
-
+    analyse_model()
 
 
     return None
 
 def train_embeddings():
-
+    we = WordEmbeddings()
+    # we.get_pretrain_vectors()
+    wiki = Wikipedia()
+    # wiki.parse_wiki()
+    # we.train_embeddings()
     return None
 
+def create_and_run_model():
+    # creating the graph and seeding the class.
+    foodon = FoodOn()
+
+    # mapping the rest entities to class.
+    foodon.populate_foodon()
+    return None
+
+def analyse_model():
+    populated_filepath = 'data/scores/populated.pkl'
+    iteration_populated_dict = load_pkl(populated_filepath)
+
+    skeleton_and_entities_pkl = 'data/FoodOn/skeleton_candidate_classes_dict.pkl'
+    skeleton_candidate_classes_dict, candidate_entities = load_pkl(skeleton_and_entities_pkl)
+
+    candidate_ontology_pkl = 'data/FoodOn/candidate_classes_dict.pkl'
+    candidate_classes_dict = load_pkl(candidate_ontology_pkl)
 
 
+
+    return None
 
 def config():
     # create logger

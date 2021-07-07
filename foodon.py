@@ -3,7 +3,7 @@ import logging as log
 import os
 import random
 import networkx as nx
-from utilities import file_exists, save_pkl, load_pkl
+from utils.utilities import file_exists, save_pkl, load_pkl
 from scoring import Scoring
 
 class FoodOn:
@@ -37,6 +37,7 @@ class FoodOn:
         # take child and parents classes
         child_parents = (foodon[['Class ID', 'Parents']].copy()).rename(columns={'Class ID': 'Child'})
         # split parent classes if there are more than one parent to child.
+
         pairs = []
         for _, row in child_parents.iterrows():
             parents = str(row['Parents'])
@@ -47,6 +48,7 @@ class FoodOn:
         foodonDF = pd.DataFrame(pairs, columns=['Child', 'Parent']) # multiple parents are split over rows
         foodonDF = self.filter_ontology(foodonDF, 'http://purl.obolibrary.org/obo/FOODON_00001872') # this class is under progress so don't include it.
         foodonDF = self.get_subtree(foodonDF, 'http://purl.obolibrary.org/obo/FOODON_00001002')     # take subtree of FOODON_00001002 class this is 'foodon product type' because we are working with this subtree only.
+
         # replace class id with the label for both child and parent and store it in foodonpairs.txt
         for _, row in foodonDF.iterrows():
             row['Child'] = labels[row['Child']]

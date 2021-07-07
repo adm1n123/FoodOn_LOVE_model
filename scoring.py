@@ -17,7 +17,7 @@ import nltk
 
 # local imports
 from fdc_preprocess import FDCPreprocess
-from utilities import file_exists, save_pkl, load_pkl
+from utils.utilities import file_exists, save_pkl, load_pkl
 
 
 class Scoring:
