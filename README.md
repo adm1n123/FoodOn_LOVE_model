@@ -9,7 +9,7 @@ scipy
 argparse
 configparser
 cython
-pattern   # done "Downloading mysqlclient-2.0.3-cp38-cp38-win_amd64.whl" this was installed during pattern but "sudo apt-get install libmysqlclient-dev" this was not installed mentioned in prerequisites 2a.   may be it is already included in mysqlclient verify.
+pattern
 wikipedia
 networkx
 textdistance
@@ -22,21 +22,23 @@ run main.py
 similarity of entity with all sibling is taken and also similarity with class label is taken 
 then score = alpha * sibling + (1-alpha) * class label
 
-Noun word is given 15% more weightage than non-noun words in class/instance label.
+Noun words is given 15% more weightage than non-noun words in class/instance label.
 
 TODO:
 wiki corpus has only 4349 sentences to train collect more (try firing failed queries again)
 
-get_seeded_skeleton() this method is generatig skeleton graph and some entities are taken as seed and some are kept
-as candidate entites(which has to be populated/mapped to class).
-there are some entites which are in more than one class but in this method only unique entites are taken i.e. author
-is assuming a entity belongs to one class only(in paper) 
-improvement could be store the count of classes entity belongs to and then during population assign this entity to 
-top k classes(by matching).
+get_seeded_skeleton() this method is generating skeleton graph and some entities are taken as seed and some are kept
+as candidate entities(which has to be populated/mapped to class).
+there are some entities which are in more than one class but in this method only unique entities are taken i.e. author
+is assuming an entity belongs to one class only(in paper) 
+[ improvement could be store the count of classes entity belongs to and then during population assign this entity to 
+top k classes(by matching). This is not improvement because you don't know when you are adding new entity in ontology 
+that is why method is called automated, or for every entity map it to one or more classes i.e. don't use information
+from ontology that an entity belongs to more than one classes. first analyse entities belonging to more than one class
+and assign if similarity with top 2 classes are same]
+
 If an entity is belonging to more than one class then it might be ambiguous so assigning it to more than one class
-migh inccur more loss. 
-Try if entity belongs to more than one class ignore that or keep those entities in seed(labeled) and populate entity
-belonging to one class.
+might inccur more loss.
 
 
 change similarity_method=random
