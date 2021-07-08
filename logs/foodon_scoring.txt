@@ -13,22 +13,20 @@ initial_siblings_scores: %s data/scores/siblings_scores.csv
 initial_parents_scores: %s data/scores/parents_scores.csv
 pairs_filepath: %s data/scores/pairs.pkl
 populated_filepath: %s data/scores/populated.pkl
-similarity_method: %s we_cos
+similarity_method: %s random
 Number of candidate classes: %d 2433
 Number of candidate entities: %d 7745
-Phrase detection skipped
-Phrase detection skipped
 Calculating siblings score...
-Elapsed time for calculating siblings score: %.2f minutes 23.714637645085652
+Elapsed time for calculating siblings score: %.2f minutes 2.3178925077120462
 Calculating parents score...
-Elapsed time for calculating parents score: %.2f minutes 17.603039952119193
+Elapsed time for calculating parents score: %.2f minutes 2.007107456525167
 Updating scores. Iteration: %d/%d 0 0
 Top scores:
-%s     candidate class      candidate entity  score
-0       polysorbate        polysorbate 80    1.0
-1       polysorbate        polysorbate 60    1.0
-2       polysorbate        polysorbate 40    1.0
-3       polysorbate        polysorbate 20    1.0
-4  alpha-tocopherol  (-)-alpha-tocopherol    1.0
+%s                    candidate class   candidate entity     score
+0                           cattle         tartrazine  0.999951
+1                 fish, siluriform        walnut meat  0.999814
+2  field corn custard food product   fruit pit kernel  0.999742
+3                      sole family          king crab  0.999734
+4                        sea snail  striated fusilier  0.999732
 
 Process finished with exit code 0

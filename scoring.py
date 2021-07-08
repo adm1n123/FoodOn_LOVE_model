@@ -38,7 +38,7 @@ class Scoring:
         self.pairs_filepath = 'data/scores/pairs.pkl'
         self.populated_filepath = 'data/scores/populated.pkl'
         # self.preprocess_config_filepath = None # assign object of that class for config values.
-        self.similarity_method = 'we_cos'   # method to use to find similarity between labels (we_cos | we_euc | hamming | jaccard | lcsseq | random)
+        self.similarity_method = 'random'   # method to use to find similarity between labels (we_cos | we_euc | hamming | jaccard | lcsseq | random)
 
         print('alpha: %f', self.alpha)
         print('num_mapping_per_iteration: %d', self.num_mapping_per_iteration)
@@ -255,7 +255,7 @@ class Scoring:
             print('Calculating siblings score...')
             t1 = time()
             with multiprocessing.Pool(processes=16, maxtasksperchild=1) as p:
-                results = p.map(self._calculate_siblings_score2, entity_class_pairs)
+                results = p.map(self._calculate_siblings_score, entity_class_pairs)
             t2 = time()
             print('Elapsed time for calculating siblings score: %.2f minutes', (t2-t1)/60)
             results = np.array(results).reshape(self.num_candidate_classes, self.num_candidate_entities)    # after reshape first row is similarity of 1st class with all entities. since pairs were generated in this manner.
