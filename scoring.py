@@ -24,8 +24,11 @@ class Scoring:
     def __init__(self, candidate_classes_info, candidate_entities):
 
         # save arguments
-        self.candidate_classes_info = candidate_classes_info
+        self.candidate_classes_info = candidate_classes_info    # It is skeleton_candidate_class_info.
         self.candidate_entities = candidate_entities
+
+        self.use_score_file = False # run scoring (parent/sibling) again
+        self.use_populated_file = False # run method again.
 
         # parse config file
         self.alpha = 0.8
@@ -194,6 +197,30 @@ class Scoring:
 
         return score
 
+    def _calculate_siblings_score2(self, pair):  # similarity of entity with average of sibling vectors.
+        class_label, entity_label = pair[0], pair[1]
+        siblings = self.candidate_classes_info[class_label][1]
+
+        if self.similarity_method == 'we_cos':
+            num_nonzero_siblings = 0
+            siblings_embedding = 0
+
+            for sibling in siblings:
+                sibling_embedding = self.pd_entity_label_embeddings.loc[sibling, 'vector']
+                if np.count_nonzero(sibling_embedding): # when there are no words in label zero vector is its embedding. so proceed only if it is non-zero.
+                    sibling_embedding = sibling_embedding / np.linalg.norm(sibling_embedding)
+                    siblings_embedding += sibling_embedding
+                    num_nonzero_siblings += 1
+
+            if num_nonzero_siblings == 0:
+                return 0
+
+            siblings_embedding /= num_nonzero_siblings
+            entity_embeddings = self.pd_entity_label_embeddings.loc[entity_label, 'vector']
+
+            score = self._cosine_similarity(siblings_embedding, entity_embeddings)
+            return score
+
     def _calculate_parents_score(self, pair):   # cosine similarity of class label vector and entity label vector.
         class_label, entity_label = pair[0], pair[1]
 
@@ -220,7 +247,7 @@ class Scoring:
 
     def _calculate_initial_scores(self):
         # calculate siblings score
-        if file_exists(self.initial_siblings_scores):
+        if file_exists(self.initial_siblings_scores) and self.use_score_file:
             print('Pre-calculated siblings scores found.')
             pd_siblings_scores = pd.read_csv(self.initial_siblings_scores, index_col=0)
         else:
@@ -228,7 +255,7 @@ class Scoring:
             print('Calculating siblings score...')
             t1 = time()
             with multiprocessing.Pool(processes=16, maxtasksperchild=1) as p:
-                results = p.map(self._calculate_siblings_score, entity_class_pairs)
+                results = p.map(self._calculate_siblings_score2, entity_class_pairs)
             t2 = time()
             print('Elapsed time for calculating siblings score: %.2f minutes', (t2-t1)/60)
             results = np.array(results).reshape(self.num_candidate_classes, self.num_candidate_entities)    # after reshape first row is similarity of 1st class with all entities. since pairs were generated in this manner.
@@ -236,7 +263,7 @@ class Scoring:
             pd_siblings_scores.to_csv(self.initial_siblings_scores)
 
         # calculate parents score
-        if file_exists(self.initial_parents_scores):
+        if file_exists(self.initial_parents_scores) and self.use_score_file:
             print('Pre-calculated parents scores found.')
             pd_parents_scores = pd.read_csv(self.initial_parents_scores, index_col=0)
         else:
@@ -253,7 +280,7 @@ class Scoring:
         return pd_siblings_scores, pd_parents_scores
 
     def run_iteration(self):
-        if file_exists(self.pairs_filepath) and file_exists(self.populated_filepath):
+        if file_exists(self.pairs_filepath) and file_exists(self.populated_filepath) and self.use_populated_file:
             print('Pre-calculated iterations found.')
             iteration_pairs = load_pkl(self.pairs_filepath)
             iteration_populated_dict = load_pkl(self.populated_filepath)
