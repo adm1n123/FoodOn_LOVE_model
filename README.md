@@ -25,7 +25,8 @@ then score = alpha * sibling + (1-alpha) * class label
 Noun words is given 15% more weightage than non-noun words in class/instance label.
 
 TODO:
-wiki corpus has only 4349 sentences to train collect more (try firing failed queries again)
+wiki corpus has only 4349 sentences to train collect more (try firing failed queries again). Use wordnet for synonyms
+and use all words+synonyms to query wikipedia. use stack overflow API and twitter API to query food label
 
 get_seeded_skeleton() this method is generating skeleton graph and some entities are taken as seed and some are kept
 as candidate entities(which has to be populated/mapped to class).
@@ -41,7 +42,7 @@ If an entity is belonging to more than one class then it might be ambiguous so a
 might inccur more loss.
 
 
-change similarity_method=random
+change similarity_method= use weighted similarity method (i.e. word embeddings with text distance etc.)
 
 
 we are not using phrases. all the labels are space separated and average of word vector is taken as label vector.
@@ -50,17 +51,17 @@ foodonpairs.txt columns are not preprocessed and phrases generation is also skip
 
 calculate_parents_score  here class label is used for similarity calculation between entity and class(not sibling) 
 entities similarity is taken with siblings of class and with class label.
-siblings vector is average of siblings.
+siblings vector is average of (seeds vectors and seeds vector is avg of words vectors in seed).
 class vector is average of label word vectors.
 Parent class means class in which entity is categorized because entity itself is called class hence parent class is 
 class in which entity and siblings are present.
 
 
-Since parent class vector(class lebel vectors) are precomputed
+Since parent class vector(class label vectors) are precomputed
 and for similarity purpose take array of class vectors and array of entity vectors then do multiplication to get
 result fast due to vectorization.
 
-for sibling vectors store the sum of subling vector and when new sibling added just add vector 
+for sibling vectors store the sum of sibling vectors and when new sibling added just add vector 
 then take array of sibling vectors and array of entities do vector multiplication.
 
 

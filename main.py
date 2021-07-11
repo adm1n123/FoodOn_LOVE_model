@@ -31,9 +31,9 @@ def main():
 def train_embeddings():
     we = WordEmbeddings()
     # we.get_pretrain_vectors()
-    wiki = Wikipedia()
+    # wiki = Wikipedia()
     # wiki.parse_wiki()
-    # we.train_embeddings()
+    we.train_embeddings()
     return None
 
 def create_and_run_model():

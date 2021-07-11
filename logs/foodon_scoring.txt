@@ -3,6 +3,7 @@ generating child parent pairs
 Using pre-generated pairs file.
 Found %d classes. 2764
 Found %d entities. 10865
+Generating graph
 Generating dictionary of candidate classes.
 Using pre-generated candidate classes dictionary file: %s data/FoodOn/candidate_classes_dict.pkl
 Generating dictionary of skeleton candidate classes.
@@ -13,20 +14,25 @@ initial_siblings_scores: %s data/scores/siblings_scores.csv
 initial_parents_scores: %s data/scores/parents_scores.csv
 pairs_filepath: %s data/scores/pairs.pkl
 populated_filepath: %s data/scores/populated.pkl
-similarity_method: %s random
+
+### similarity_method: %s ###
+ we_cos
 Number of candidate classes: %d 2433
-Number of candidate entities: %d 7745
+Number of candidate entities: %d 7732
+Phrase detection skipped
+Phrase detection skipped
 Calculating siblings score...
-Elapsed time for calculating siblings score: %.2f minutes 2.3178925077120462
+Elapsed time for calculating siblings score: %.2f minutes 22.954126381874083
 Calculating parents score...
-Elapsed time for calculating parents score: %.2f minutes 2.007107456525167
+Elapsed time for calculating parents score: %.2f minutes 11.567170457045238
+Running iteration
 Updating scores. Iteration: %d/%d 0 0
 Top scores:
-%s                    candidate class   candidate entity     score
-0                           cattle         tartrazine  0.999951
-1                 fish, siluriform        walnut meat  0.999814
-2  field corn custard food product   fruit pit kernel  0.999742
-3                      sole family          king crab  0.999734
-4                        sea snail  striated fusilier  0.999732
+%s        candidate class      candidate entity  score
+0     alpha-tocopherol  (+)-alpha-tocopherol    1.0
+1  alkylcob(III)alamin   cyanocob(III)alamin    1.0
+2             cysteine            L-cysteine    1.0
+3          polysorbate        polysorbate 40    1.0
+4          polysorbate        polysorbate 20    1.0
 
 Process finished with exit code 0

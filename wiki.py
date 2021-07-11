@@ -1,9 +1,18 @@
 import os
+import multiprocessing
+from time import time
 import pandas as pd
 from fdc_preprocess import FDCPreprocess
 import wikipedia
+import nltk
+from nltk.corpus import wordnet
 
+COUNTER = 0
+TOTAL_QUERIES = 0
 class Wikipedia:
+    """
+    Use class/entity labels to query wikipedia and save wiki page content. using wordnet for synonyms.
+    """
 
     def __init__(self):
         self.reuse_summary = True
@@ -11,7 +20,7 @@ class Wikipedia:
         self.summary_file = 'data/wikipedia/summaries.txt'
         self.summary_preprocessed_file = 'output/wikipedia_preprocessed.txt'
         self.foodon_pairs_file = 'data/FoodOn/foodonpairs.txt'
-
+        self.max_query_in_run = 1000    # number of queries to fire in one run and save summary.
 
 
     def parse_wiki(self):   # tested
@@ -28,6 +37,7 @@ class Wikipedia:
         for label in processed_labels:
             queries.extend(label.split())
         queries = list(set(queries))
+        queries = self.extend_queries(queries)
 
         if self.reuse_summary and os.path.isfile(self.summary_file) and os.path.isfile(self.failed_query_file):
             summary_file = self.summary_file
@@ -40,6 +50,19 @@ class Wikipedia:
         failed_df.to_csv(self.failed_query_file, sep='\t', index=False)
         summary_df['summary_preprocessed'] = fdc_preprocess.preprocess_columns(summary_df['summary'], load_phrase_model=True)   # load_phrase_model=True. use phrases for food labels don't make phrases for wiki contents.
         summary_df.to_csv(self.summary_preprocessed_file, sep='\t', index=False)
+
+    def extend_queries(self, queries):   # use wordnet to add synonyms of words
+        print(f'Number of queries: {len(queries)}')
+
+        q_synonyms = set()
+        for query in queries:
+            for syn in wordnet.synsets(query):
+                for lemma in syn.lemmas():
+                    q_synonyms.add(lemma.name())
+        total_queries = list(q_synonyms.union(set(queries)))
+        print(f'Number of queries after wordnet synonyms: {len(total_queries)}, new queries: {len(total_queries) - len(queries)}')
+        return total_queries
+
 
     def query_summary(self, queries, summary_file=None, failed_query_file=None):    # tested
         if summary_file and failed_query_file:
@@ -59,15 +82,18 @@ class Wikipedia:
         failed_queries = []
         NUM_LOGS = 50
         num_queries = len(queries)
-        log_every = [i * int(num_queries / NUM_LOGS) for i in range(NUM_LOGS)]
 
-        for idx, query in enumerate(queries):   # underscores in phrase are treated as space in wiki search.
-            if idx in log_every:
-                print('Processing query {}/{}'.format(idx, num_queries))
-            try:
-                summary = wikipedia.WikipediaPage(query).content.replace('\n', ' ')     # to get summary use wikipedia.summary(query)
-                summaries.append([query, summary])
-            except:
+        print('query wiki ...')
+        t1 = time()
+        with multiprocessing.Pool(processes=16, maxtasksperchild=1) as p:
+            results = p.map(self.multi_queries, queries)
+        t2 = time()
+        print('Elapsed time for queries: %.2f minutes', (t2 - t1) / 60)
+
+        for query, status, content in results:
+            if status:
+                summaries.append([query, content])
+            else:
                 failed_queries.append([query])
 
         pd_summaries = pd.DataFrame(summaries, columns=['query', 'summary'])
@@ -82,6 +108,18 @@ class Wikipedia:
         print('Failed to get wikipedia summaries for %d queries', pd_failed.shape[0])
         return pd_summaries, pd_failed
 
+    def multi_queries(self, query):
+        global COUNTER, TOTAL_QUERIES
+        COUNTER += 1
+        if COUNTER > 100:
+            TOTAL_QUERIES += COUNTER
+            print(f'{TOTAL_QUERIES} queries processed')
+            COUNTER = 0
+        try:
+            content = wikipedia.WikipediaPage(query).content.replace('\n', ' ')  # to get summary use wikipedia.summary(query)
+            return query, True, content
+        except:
+            return query, False, None
 
 
 
@@ -93,4 +131,7 @@ def test():
 
 
 if __name__ == '__main__':
+    wiki = Wikipedia()
+    wiki.parse_wiki()
+
     test()

@@ -38,7 +38,7 @@ class Scoring:
         self.pairs_filepath = 'data/scores/pairs.pkl'
         self.populated_filepath = 'data/scores/populated.pkl'
         # self.preprocess_config_filepath = None # assign object of that class for config values.
-        self.similarity_method = 'random'   # method to use to find similarity between labels (we_cos | we_euc | hamming | jaccard | lcsseq | random)
+        self.similarity_method = 'we_cos'   # method to use to find similarity between labels (we_cos | we_euc | hamming | jaccard | lcsseq | random)
 
         print('alpha: %f', self.alpha)
         print('num_mapping_per_iteration: %d', self.num_mapping_per_iteration)
@@ -46,7 +46,7 @@ class Scoring:
         print('initial_parents_scores: %s', self.initial_parents_scores)
         print('pairs_filepath: %s', self.pairs_filepath)
         print('populated_filepath: %s', self.populated_filepath)
-        print('similarity_method: %s', self.similarity_method)
+        print('\n### similarity_method: %s ###\n', self.similarity_method)
 
         self.fpm = FDCPreprocess()
         self.num_candidate_classes = len(self.candidate_classes_info)
@@ -280,6 +280,7 @@ class Scoring:
         return pd_siblings_scores, pd_parents_scores
 
     def run_iteration(self):
+        print('Running iteration')
         if file_exists(self.pairs_filepath) and file_exists(self.populated_filepath) and self.use_populated_file:
             print('Pre-calculated iterations found.')
             iteration_pairs = load_pkl(self.pairs_filepath)

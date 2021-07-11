@@ -104,6 +104,7 @@ class FoodOn:
         return classes, entities
 
     def generate_graph(self):
+        print('Generating graph')
         graph_dict = {class_label: idx for idx, class_label in enumerate(self.all_classes)}     # label to index
         graph_dict_flip = {idx: class_label for idx, class_label in enumerate(self.all_classes)}    # index to label
 

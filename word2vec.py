@@ -87,7 +87,7 @@ class Word2vecTrainer:
             print('Intersecting %d common vocabularies for transfer learning', len(common_words))
             # self.model.build_vocab([pretrained_vocab], update=True, min_count=1)  # update=True: add new words and initialize their vectors, min_count=1: include every word because pretrained_vocab is list of unique words
 
-            self.model.wv.intersect_word2vec_format(pretrained_file, lockf=0.0) # intersecting word vectors are replaced by pretrained vectors. lockf=1 means allow imported vectors to be trained. lockf=0 imported vectors are not trained.
+            self.model.wv.intersect_word2vec_format(pretrained_file, lockf=1.0) # intersecting word vectors are replaced by pretrained vectors. lockf=1 means allow imported vectors to be trained. lockf=0 imported vectors are not trained.
             # TODO: before training on wiki train on brown etc. corpus and some food related corpus.
             # TODO: lock vectors then train and then unlock(load again) and train so that remaining vectors are trained according to pretrained and then every vectors trained.
         self.model.train(
@@ -129,3 +129,9 @@ class CallbackOnEpoch(CallbackAny2Vec):
         self.loss[self.epoch] = actual_loss
         self.previous_loss = loss
         self.epoch += 1
+
+
+if __name__ == '__main__':
+    we = WordEmbeddings()
+    # we.get_pretrain_vectors()
+    we.train_embeddings()
