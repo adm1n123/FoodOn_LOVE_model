@@ -5,9 +5,10 @@ Found %d classes. 2764
 Found %d entities. 10865
 Generating graph
 Generating dictionary of candidate classes.
-Using pre-generated candidate classes dictionary file: %s data/FoodOn/candidate_classes_dict.pkl
+Found %d candidate classes out of %d all classes. 2433 2764
 Generating dictionary of skeleton candidate classes.
-Using pickled skeleton file: %s data/FoodOn/skeleton_candidate_classes_dict.pkl
+381 entities are in seeds as well as non-seeds(Bug)
+Found %d candidate entities to populate out of %d all entities. 7395 10865
 alpha: %f 0.8
 num_mapping_per_iteration: %d 10000
 initial_siblings_scores: %s data/scores/siblings_scores.csv
@@ -18,21 +19,21 @@ populated_filepath: %s data/scores/populated.pkl
 ### similarity_method: %s ###
  we_cos
 Number of candidate classes: %d 2433
-Number of candidate entities: %d 7732
+Number of candidate entities: %d 7395
 Phrase detection skipped
 Phrase detection skipped
 Calculating siblings score...
-Elapsed time for calculating siblings score: %.2f minutes 22.954126381874083
+Elapsed time for calculating siblings score: %.2f minutes 15.829426304499309
 Calculating parents score...
-Elapsed time for calculating parents score: %.2f minutes 11.567170457045238
+Elapsed time for calculating parents score: %.2f minutes 13.139539039134979
 Running iteration
 Updating scores. Iteration: %d/%d 0 0
 Top scores:
-%s        candidate class      candidate entity  score
-0     alpha-tocopherol  (+)-alpha-tocopherol    1.0
-1  alkylcob(III)alamin   cyanocob(III)alamin    1.0
-2             cysteine            L-cysteine    1.0
-3          polysorbate        polysorbate 40    1.0
-4          polysorbate        polysorbate 20    1.0
+%s     candidate class      candidate entity     score
+0  alpha-tocopherol  (+)-alpha-tocopherol  1.000000
+1       polysorbate        polysorbate 20  1.000000
+2       polysorbate        polysorbate 80  1.000000
+3  fish, siluriform           neet (fish)  0.991179
+4  fish, siluriform        Kapchunka fish  0.991179
 
 Process finished with exit code 0

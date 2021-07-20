@@ -167,8 +167,25 @@ class FoodOn:
 
             skeleton_candidate_classes_dict[candidate_class] = (candidate_classes_dict[candidate_class][0], seeds)  # store path and seeds in skeleton dict
 
+
+
+
         candidate_entities = list(set(candidate_entities))  # even if an entity belongs to more than one class assume it belongs to one class and we will map it to only one class(in paper).
+        count = 0
+        rmv_seeds = []
+        for entry in skeleton_candidate_classes_dict.values():
+            seeds = entry[1]
+            for seed in seeds:
+                if seed in candidate_entities:
+                    count += 1
+                    rmv_seeds.append(seed)
+
+
+        print(f'{count} entities are in seeds as well as non-seeds(Bug)')
+        candidate_entities = list(set(candidate_entities) - set(rmv_seeds))
         candidate_entities.sort()
+
+
         print('Found %d candidate entities to populate out of %d all entities.', len(candidate_entities), len(self.all_entities))
         return_value = (skeleton_candidate_classes_dict, candidate_entities)
         save_pkl(return_value, self.skeleton_and_entities_pkl)
